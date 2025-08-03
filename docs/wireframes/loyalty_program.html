@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyalty Program - Greenway Marijuana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-icon, .cart-icon, .account-icon {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Page Title */
+        .page-title {
+            background-color: #4CAF50;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Loyalty Program Section */
+        .loyalty-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        /* Tabs */
+        .loyalty-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 40px;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            color: #4CAF50;
+            border-bottom: 3px solid #4CAF50;
+        }
+        
+        /* Login/Register Section */
+        .auth-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .auth-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .auth-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4CAF50;
+        }
+        
+        .form-check label {
+            font-size: 14px;
+        }
+        
+        .auth-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .auth-button:hover {
+            background-color: #45a049;
+        }
+        
+        .auth-footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        
+        .auth-footer a {
+            color: #4CAF50;
+            font-weight: 500;
+        }
+        
+        /* Program Benefits */
+        .benefits-container {
+            margin-top: 60px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #e0f2e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        
+        .benefit-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .benefit-description {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .steps-container {
+            display: flex;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .step {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 15px;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* Rewards Tiers */
+        .rewards-tiers {
+            margin-top: 60px;
+        }
+        
+        .tiers-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .tier-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .tier-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tier-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .tier-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .tier-points {
+            font-size: 14px;
+        }
+        
+        .tier-body {
+            padding: 30px;
+        }
+        
+        .tier-benefits {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .tier-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .benefit-check {
+            color: #4CAF50;
+            font-size: 18px;
+        }
+        
+        .tier-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+        
+        .tier-button:hover {
+            background-color: #45a049;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 60px;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 20px;
+            color: #4CAF50;
+        }
+        
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: #e0f2e1;
+            padding: 60px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .cta-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-text {
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .cta-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .age-warning {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .benefits-grid, .tiers-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links, .header-actions {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .page-title h1 {
+                font-size: 28px;
+            }
+            
+            .page-title p {
+                font-size: 16px;
+            }
+            
+            .loyalty-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .tab {
+                padding: 15px 20px;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .steps-container::before {
+                display: none;
+            }
+            
+            .step {
+                padding: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .benefits-grid, .tiers-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="logo">
+            
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Deals</a>
+                <a href="#">Loyalty</a>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-icon">🔍</div>
+                <div class="cart-icon">🛒 <span class="cart-count">0</span></div>
+                <div class="account-icon">👤</div>
+            </div>
+            
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+    
+    <!-- Page Title -->
+    <section class="page-title">
+        <h1>Greenway Rewards Program</h1>
+        <p>Join our loyalty program and earn points with every purchase. Redeem your points for exclusive discounts, free products, and special perks.</p>
+    </section>
+    
+    <!-- Loyalty Program Section -->
+    <section class="loyalty-section">
+        <!-- Tabs -->
+        <div class="loyalty-tabs">
+            <div class="tab active">Login / Register</div>
+            <div class="tab">Program Benefits</div>
+            <div class="tab">How It Works</div>
+            <div class="tab">Rewards Tiers</div>
+            <div class="tab">FAQ</div>
+        </div>
+        
+        <!-- Login/Register Section -->
+        <div class="auth-container">
+            <!-- Login Box -->
+            <div class="auth-box">
+                <h2 class="auth-title">Member Login</h2>
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Email or Phone Number</label>
+                        <input type="text" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <button type="submit" class="auth-button">Login</button>
+                </form>
+                <div class="auth-footer">
+                    <a href="#">Forgot your password?</a>
+                </div>
+            </div>
+            
+            <!-- Register Box -->
+            <div class="auth-box">
+                <h2 class="auth-title">New Member Registration</h2>
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email Address</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-phone">Phone Number</label>
+                        <input type="tel" id="register-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Create Password</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-birthday">Birthday (Optional)</label>
+                        <input type="date" id="register-birthday">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#" style="color: #4CAF50;">Terms and Conditions</a> and <a href="#" style="color: #4CAF50;">Privacy Policy</a>.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="age-verification" required>
+                        <label for="age-verification">I confirm that I am 21 years of age or older.</label>
+                    </div>
+                    <button type="submit" class="auth-button">Create Account</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Program Benefits -->
+        <div class="benefits-container">
+            <h2 class="section-title">Program Benefits</h2>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Earn Points</h3>
+                    <p class="benefit-description">Earn 1 point for every dollar spent on qualifying purchases. Points never expire as long as your account remains active.</p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h3 class="benefit-title">Redeem Rewards</h3>
+                    <p class="benefit-description">Redeem your points for discounts, free products, and exclusive merchandise only available to loyalty members.</p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎂</div>
+                    <h3 class="benefit-title">Birthday Rewards</h3>
+                    <p class="benefit-description">Receive a special gift during your birthday month. The higher your tier, the better your birthday reward!</p>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔔</div>
+                    <h3 class="benefit-title">Early Access</h3>
+                    <p class="benefit-description">Be the first to know about new products, limited releases, and special events with exclusive member notifications.</p>
+                </div>
+                
+                <!-- Benefit 5 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">⭐</div>
+                    <h3 class="benefit-title">VIP Treatment</h3>
+                    <p class="benefit-description">Unlock VIP benefits as you progress through membership tiers, including priority service and exclusive events.</p>
+                </div>
+                
+                <!-- Benefit 6 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3 class="benefit-title">Digital Wallet</h3>
+                    <p class="benefit-description">Access your rewards, points balance, and special offers directly from your online account or in-store.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How It Works -->
+        <div class="how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Sign Up</h3>
+                    <p class="step-description">Create your free Greenway Rewards account online or in-store. Must be 21+ with valid ID.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Shop & Earn</h3>
+                    <p class="step-description">Earn 1 point for every $1 spent on qualifying purchases. Points are added automatically.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Level Up</h3>
+                    <p class="step-description">Progress through membership tiers based on your annual spending to unlock better rewards.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Redeem Rewards</h3>
+                    <p class="step-description">Use your points for discounts, free products, and exclusive merchandise in-store or online.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rewards Tiers -->
+        <div class="rewards-tiers">
+            <h2 class="section-title">Rewards Tiers</h2>
+            
+            <div class="tiers-container">
+                <!-- Green Tier -->
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3 class="tier-name">Green Tier</h3>
+                        <p class="tier-points">0-499 Points</p>
+                    </div>
+                    <div class="tier-body">
+                        <ul class="tier-benefits">
+                            <li><span class="benefit-check">✓</span> 1 point per $1 spent</li>
+                            <li><span class="benefit-check">✓</span> Birthday reward</li>
+                            <li><span class="benefit-check">✓</span> Member-only promotions</li>
+                            <li><span class="benefit-check">✓</span> Early access to select products</li>
+                            <li><span class="benefit-check">✓</span> Points never expire with activity</li>
+                        </ul>
+                        <a href="#" class="tier-button">Join Now</a>
+                    </div>
+                </div>
+                
+                <!-- Gold Tier -->
+                <div class="tier-card">
+                    <div class="tier-header" style="background-color: #FFD700;">
+                        <h3 class="tier-name">Gold Tier</h3>
+                        <p class="tier-points">500-999 Points</p>
+                    </div>
+                    <div class="tier-body">
+                        <ul class="tier-benefits">
+                            <li><span class="benefit-check">✓</span> All Green Tier benefits</li>
+                            <li><span class="benefit-check">✓</span> 1.25 points per $1 spent</li>
+                            <li><span class="benefit-check">✓</span> Enhanced birthday reward</li>
+                            <li><span class="benefit-check">✓</span> Exclusive Gold member promotions</li>
+                            <li><span class="benefit-check">✓</span> Early access to all new products</li>
+                            <li><span class="benefit-check">✓</span> Quarterly bonus rewards</li>
+                        </ul>
+                        <a href="#" class="tier-button">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Platinum Tier -->
+                <div class="tier-card">
+                    <div class="tier-header" style="background-color: #E5E4E2;">
+                        <h3 class="tier-name">Platinum Tier</h3>
+                        <p class="tier-points">1000+ Points</p>
+                    </div>
+                    <div class="tier-body">
+                        <ul class="tier-benefits">
+                            <li><span class="benefit-check">✓</span> All Gold Tier benefits</li>
+                            <li><span class="benefit-check">✓</span> 1.5 points per $1 spent</li>
+                            <li><span class="benefit-check">✓</span> Premium birthday package</li>
+                            <li><span class="benefit-check">✓</span> VIP checkout line</li>
+                            <li><span class="benefit-check">✓</span> Exclusive Platinum events</li>
+                            <li><span class="benefit-check">✓</span> Personal shopping assistance</li>
+                            <li><span class="benefit-check">✓</span> Monthly bonus rewards</li>
+                        </ul>
+                        <a href="#" class="tier-button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">How do I join the Greenway Rewards Program?</div>
+                    <div class="faq-answer">
+                        <p>You can join our rewards program by signing up online through our website or in-store at any Greenway Marijuana location. You'll need to provide basic information like your name, email, phone number, and verify that you're 21 or older with a valid ID.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">How do I earn points?</div>
+                    <div class="faq-answer">
+                        <p>You earn points based on your purchases at Greenway Marijuana. For every $1 spent on qualifying purchases, you earn 1 point. Gold tier members earn 1.25 points per dollar, and Platinum tier members earn 1.5 points per dollar. Points are automatically added to your account after each purchase.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">Do my points expire?</div>
+                    <div class="faq-answer">
+                        <p>Points never expire as long as your account remains active. An account is considered active if you make at least one purchase within a 12-month period. If your account is inactive for more than 12 months, points may expire.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">How do I redeem my rewards?</div>
+                    <div class="faq-answer">
+                        <p>You can redeem your rewards in-store or online during checkout. Simply let our budtender know you'd like to use your points, or select the option to apply rewards during online checkout. You can choose to redeem points for discounts, free products, or exclusive merchandise.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">How do I check my points balance?</div>
+                    <div class="faq-answer">
+                        <p>You can check your points balance by logging into your account on our website, asking a budtender in-store, or calling our customer service line. Your current points balance is also displayed on your receipt after each purchase.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Start Earning Rewards?</h2>
+            <p class="cta-text">Join the Greenway Rewards Program today and start earning points with your very first purchase. It's free to join and the benefits are immediate!</p>
+            <a href="#" class="cta-button">Sign Up Now</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Flower</a></li>
+                        <li><a href="#">Pre-Rolls</a></li>
+                        <li><a href="#">Vaporizers</a></li>
+                        <li><a href="#">Concentrates</a></li>
+                        <li><a href="#">Edibles</a></li>
+                        <li><a href="#">Topicals</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Location & Hours</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Loyalty Program</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <p>Follow us on social media for the latest updates and promotions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">TW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Greenway Marijuana. All rights reserved.</p>
+                <div class="age-warning">
+                    <p>You must be 21 years of age or older to view this website and purchase products. Cannabis products may be purchased only by adults 21 years of age or older. Keep out of reach of children. It is illegal to drive while under the influence of cannabis.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

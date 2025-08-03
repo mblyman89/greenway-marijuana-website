@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Dream - Greenway Marijuana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-icon, .cart-icon, .account-icon {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: #4CAF50;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: #45a049;
+        }
+        
+        .breadcrumb .separator {
+            color: #999;
+        }
+        
+        /* Product Detail */
+        .product-detail {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        /* Product Gallery */
+        .product-gallery {
+            position: relative;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            transform: translateY(-3px);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .thumbnail.active {
+            border: 2px solid #4CAF50;
+        }
+        
+        /* Product Info */
+        .product-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-category {
+            font-size: 14px;
+            color: #4CAF50;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .product-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .product-brand {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .product-badges {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .badge {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .badge-strain {
+            background-color: #e0f2e1;
+            color: #4CAF50;
+        }
+        
+        .badge-thc {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .badge-cbd {
+            background-color: #e1f5fe;
+            color: #0288d1;
+        }
+        
+        .product-description {
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .product-attributes {
+            margin-bottom: 30px;
+        }
+        
+        .attribute-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .attributes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .attribute {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .attribute-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .attribute-value {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .quantity-label {
+            margin-right: 15px;
+            font-weight: 500;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background-color: #f0f0f0;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .add-to-cart {
+            flex: 3;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+        
+        .add-to-favorites {
+            flex: 1;
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+            padding: 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-favorites:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Product Tabs */
+        .product-tabs {
+            margin-bottom: 60px;
+        }
+        
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .tab-btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .tab-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .effects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .effect {
+            background-color: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .effect-icon {
+            font-size: 18px;
+        }
+        
+        .lab-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .lab-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        
+        .lab-item-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .lab-item-value {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .terpene-chart {
+            height: 300px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        .review {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .reviewer-name {
+            font-weight: 500;
+        }
+        
+        .review-date {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .review-rating {
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+        
+        .review-content {
+            color: #666;
+        }
+        
+        .write-review {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .write-review h4 {
+            margin-bottom: 15px;
+        }
+        
+        .review-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-review {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .submit-review:hover {
+            background-color: #45a049;
+        }
+        
+        /* Related Products */
+        .related-products {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .card-info {
+            padding: 15px;
+        }
+        
+        .card-category {
+            font-size: 12px;
+            color: #4CAF50;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .card-name {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .card-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .card-add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex: 3;
+            font-size: 14px;
+        }
+        
+        .card-add-to-cart:hover {
+            background-color: #45a049;
+        }
+        
+        .card-quick-view {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+            padding: 8px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 2;
+            font-size: 14px;
+        }
+        
+        .card-quick-view:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .age-warning {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links, .header-actions {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .product-title {
+                font-size: 28px;
+            }
+            
+            .tabs-header {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .tab-btn {
+                padding: 15px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .add-to-favorites {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="logo">
+            
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Deals</a>
+                <a href="#">Loyalty</a>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-icon">🔍</div>
+                <div class="cart-icon">🛒 <span class="cart-count">0</span></div>
+                <div class="account-icon">👤</div>
+            </div>
+            
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-container">
+        <div class="breadcrumb">
+            <a href="#">Home</a>
+            <span class="separator">/</span>
+            <a href="#">Products</a>
+            <span class="separator">/</span>
+            <a href="#">Flower</a>
+            <span class="separator">/</span>
+            <span>Blue Dream</span>
+        </div>
+    </div>
+    
+    <!-- Product Detail -->
+    <section class="product-detail">
+        <div class="product-container">
+            <!-- Product Gallery -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Blue Dream">
+                </div>
+                <div class="thumbnail-container">
+                    <div class="thumbnail active">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Blue Dream Thumbnail 1">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Blue Dream Thumbnail 2">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Blue Dream Thumbnail 3">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Blue Dream Thumbnail 4">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Info -->
+            <div class="product-info">
+                <div class="product-category">Flower</div>
+                <h1 class="product-title">Blue Dream</h1>
+                <div class="product-brand">By Phat Panda</div>
+                <div class="product-price">$12.00 / gram</div>
+                
+                <div class="product-badges">
+                    <div class="badge badge-strain">Hybrid</div>
+                    <div class="badge badge-thc">THC: 24%</div>
+                    <div class="badge badge-cbd">CBD: 0.1%</div>
+                </div>
+                
+                <div class="product-description">
+                    <p>Blue Dream is a sativa-dominant hybrid marijuana strain made by crossing Blueberry with Haze. This strain produces a balanced high, along with effects such as cerebral stimulation and full-body relaxation. Blue dream is 18% THC but has a low CBD percentage, making this potent strain a fan favorite of both novice and veteran cannabis consumers.</p>
+                </div>
+                
+                <div class="product-attributes">
+                    <h3 class="attribute-title">Product Details</h3>
+                    <div class="attributes-grid">
+                        <div class="attribute">
+                            <span class="attribute-label">Strain Type</span>
+                            <span class="attribute-value">Hybrid (Sativa-dominant)</span>
+                        </div>
+                        <div class="attribute">
+                            <span class="attribute-label">THC Content</span>
+                            <span class="attribute-value">24%</span>
+                        </div>
+                        <div class="attribute">
+                            <span class="attribute-label">CBD Content</span>
+                            <span class="attribute-value">0.1%</span>
+                        </div>
+                        <div class="attribute">
+                            <span class="attribute-label">Weight</span>
+                            <span class="attribute-value">1 gram</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <span class="quantity-label">Quantity:</span>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-favorites">♡</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <div class="tabs-header">
+                <div class="tab-btn active">Description</div>
+                <div class="tab-btn">Effects & Flavors</div>
+                <div class="tab-btn">Lab Results</div>
+                <div class="tab-btn">Reviews</div>
+            </div>
+            
+            <div class="tab-content active">
+                <h3>About Blue Dream</h3>
+                <p>Blue Dream is one of the most popular strains in the United States. Beginning its life in California, this sativa-dominant hybrid is a cross between Blueberry and Haze, creating a pleasant blend of effects. Blue Dream is relaxing and soothing but not sleepy, and it can be great for pain relief.</p>
+                <p>This strain is ideal for daytime use and can be suitable for both beginners and experienced users. The high is known to come on slowly but then provide a nice balance between cerebral stimulation and gentle body relaxation.</p>
+                <p>Blue Dream features a delicious flavor profile that combines sweet berry notes inherited from its Blueberry parent with subtle herbal and spicy undertones from Haze. The aroma is similarly pleasant, with hints of blueberry, earth, and a touch of citrus.</p>
+                <p>Medical marijuana patients often choose Blue Dream to help relieve symptoms associated with depression, chronic pain, and nausea. Its balanced effects make it versatile for various conditions without being too overwhelming.</p>
+            </div>
+            
+            <div class="tab-content">
+                <h3>Effects</h3>
+                <div class="effects-container">
+                    <div class="effect">
+                        <span class="effect-icon">😊</span>
+                        <span>Happy</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🧠</span>
+                        <span>Creative</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">😌</span>
+                        <span>Relaxed</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🔋</span>
+                        <span>Energetic</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🤤</span>
+                        <span>Euphoric</span>
+                    </div>
+                </div>
+                
+                <h3>Flavors</h3>
+                <div class="effects-container">
+                    <div class="effect">
+                        <span class="effect-icon">🫐</span>
+                        <span>Blueberry</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🌿</span>
+                        <span>Herbal</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🍬</span>
+                        <span>Sweet</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🌲</span>
+                        <span>Pine</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🍋</span>
+                        <span>Citrus</span>
+                    </div>
+                </div>
+                
+                <h3>Medical Uses</h3>
+                <div class="effects-container">
+                    <div class="effect">
+                        <span class="effect-icon">😔</span>
+                        <span>Depression</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">😰</span>
+                        <span>Stress</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🤕</span>
+                        <span>Pain</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">😴</span>
+                        <span>Insomnia</span>
+                    </div>
+                    <div class="effect">
+                        <span class="effect-icon">🤢</span>
+                        <span>Nausea</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content">
+                <h3>Cannabinoid Profile</h3>
+                <div class="lab-results">
+                    <div class="lab-item">
+                        <div class="lab-item-title">THC</div>
+                        <div class="lab-item-value">24%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">CBD</div>
+                        <div class="lab-item-value">0.1%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">CBG</div>
+                        <div class="lab-item-value">0.8%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">CBN</div>
+                        <div class="lab-item-value">0.2%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">Total Cannabinoids</div>
+                        <div class="lab-item-value">25.1%</div>
+                    </div>
+                </div>
+                
+                <h3>Terpene Profile</h3>
+                <div class="terpene-chart">
+                    [Terpene Chart Visualization]
+                </div>
+                
+                <div class="lab-results">
+                    <div class="lab-item">
+                        <div class="lab-item-title">Myrcene</div>
+                        <div class="lab-item-value">0.42%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">Limonene</div>
+                        <div class="lab-item-value">0.38%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">Caryophyllene</div>
+                        <div class="lab-item-value">0.35%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">Pinene</div>
+                        <div class="lab-item-value">0.29%</div>
+                    </div>
+                    <div class="lab-item">
+                        <div class="lab-item-title">Linalool</div>
+                        <div class="lab-item-value">0.15%</div>
+                    </div>
+                </div>
+                
+                <h3>Testing Information</h3>
+                <p>Tested by: Green Labs Analytics</p>
+                <p>Test Date: July 15, 2025</p>
+                <p>Batch: BD-2025-07-15</p>
+                <p>Harvest Date: July 1, 2025</p>
+            </div>
+            
+            <div class="tab-content">
+                <h3>Customer Reviews</h3>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer-name">John D.</div>
+                        <div class="review-date">July 20, 2025</div>
+                    </div>
+                    <div class="review-rating">★★★★★</div>
+                    <div class="review-content">
+                        <p>Blue Dream is my go-to strain for daytime use. It gives me energy and creativity without any anxiety. The flavor is amazing too - sweet and berry-like. Highly recommend!</p>
+                    </div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer-name">Sarah M.</div>
+                        <div class="review-date">July 18, 2025</div>
+                    </div>
+                    <div class="review-rating">★★★★☆</div>
+                    <div class="review-content">
+                        <p>Great strain for pain relief. I use it for my chronic back pain and it works wonders without making me too sleepy. The only reason for 4 stars instead of 5 is that it can be a bit dry sometimes.</p>
+                    </div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer-name">Mike T.</div>
+                        <div class="review-date">July 15, 2025</div>
+                    </div>
+                    <div class="review-rating">★★★★★</div>
+                    <div class="review-content">
+                        <p>Perfect balance of effects. Helps with my anxiety and gives me a nice creative boost. The quality from Greenway is always consistent too, which I appreciate.</p>
+                    </div>
+                </div>
+                
+                <div class="write-review">
+                    <h4>Write a Review</h4>
+                    <form class="review-form">
+                        <div class="form-group">
+                            <label for="review-name">Name</label>
+                            <input type="text" id="review-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="review-email">Email</label>
+                            <input type="email" id="review-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="review-rating">Rating</label>
+                            <select id="review-rating" required>
+                                <option value="5">5 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="2">2 Stars</option>
+                                <option value="1">1 Star</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="review-content">Review</label>
+                            <textarea id="review-content" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-review">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2 class="section-title">You May Also Like</h2>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Flower</div>
+                        <h3 class="card-name">Girl Scout Cookies</h3>
+                        <div class="card-details">
+                            <span>THC: 25%</span>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="card-price">$15.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Flower</div>
+                        <h3 class="card-name">Sour Diesel</h3>
+                        <div class="card-details">
+                            <span>THC: 22%</span>
+                            <span>Sativa</span>
+                        </div>
+                        <div class="card-price">$14.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Flower</div>
+                        <h3 class="card-name">OG Kush</h3>
+                        <div class="card-details">
+                            <span>THC: 23%</span>
+                            <span>Indica</span>
+                        </div>
+                        <div class="card-price">$13.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Flower</div>
+                        <h3 class="card-name">Wedding Cake</h3>
+                        <div class="card-details">
+                            <span>THC: 26%</span>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="card-price">$16.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Flower</a></li>
+                        <li><a href="#">Pre-Rolls</a></li>
+                        <li><a href="#">Vaporizers</a></li>
+                        <li><a href="#">Concentrates</a></li>
+                        <li><a href="#">Edibles</a></li>
+                        <li><a href="#">Topicals</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Location & Hours</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Loyalty Program</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <p>Follow us on social media for the latest updates and promotions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">TW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Greenway Marijuana. All rights reserved.</p>
+                <div class="age-warning">
+                    <p>You must be 21 years of age or older to view this website and purchase products. Cannabis products may be purchased only by adults 21 years of age or older. Keep out of reach of children. It is illegal to drive while under the influence of cannabis.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenway Marijuana - Port Orchard, WA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .age-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .age-verification-content {
+            background-color: #000;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #ccc;
+            border: 1px solid #ccc;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Age Verification Overlay -->
+    <div class="age-verification" id="ageVerification">
+        <div class="age-verification-content">
+            <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="w-48 mx-auto mb-6">
+            <h1 class="text-2xl font-bold text-green-500 mb-4">Welcome to Greenway Marijuana</h1>
+            <p class="text-white mb-6">You must be 21 years or older to enter this website. Please verify your age to continue.</p>
+            <div class="flex flex-col gap-4">
+                <button class="btn-primary" onclick="verifyAge(true)">YES, I AM 21 OR OLDER</button>
+                <button class="btn-secondary" onclick="verifyAge(false)">NO, I AM UNDER 21</button>
+            </div>
+            <div class="flex items-center justify-center mt-6">
+                <input type="checkbox" id="rememberMe" class="w-4 h-4 accent-green-500">
+                <label for="rememberMe" class="text-white ml-2">Remember me for 30 days</label>
+            </div>
+            <p class="text-gray-400 text-xs mt-6">By entering this site you are agreeing to the Terms of Use and Privacy Policy. Cannabis products are for use only by adults 21 years of age or older. Cannabis use during pregnancy or breastfeeding poses potential harms. It is illegal to drive while under the influence of cannabis.</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-black text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="w-40">
+            
+            <nav class="hidden md:flex gap-6">
+                <a href="#" class="hover:text-green-500 transition">Home</a>
+                <a href="#" class="hover:text-green-500 transition">Products</a>
+                <a href="#" class="hover:text-green-500 transition">Deals</a>
+                <a href="#" class="hover:text-green-500 transition">Loyalty</a>
+                <a href="#" class="hover:text-green-500 transition">Blog</a>
+                <a href="#" class="hover:text-green-500 transition">About</a>
+                <a href="#" class="hover:text-green-500 transition">Contact</a>
+            </nav>
+            
+            <div class="hidden md:flex items-center gap-4">
+                <span class="cursor-pointer">🔍</span>
+                <span class="cursor-pointer relative">🛒 <span class="absolute -top-2 -right-2 bg-green-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">0</span></span>
+                <span class="cursor-pointer">👤</span>
+            </div>
+            
+            <div class="md:hidden text-2xl cursor-pointer">☰</div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="relative h-96 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="container mx-auto px-4 h-full flex items-center justify-center relative z-10 text-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Premium Cannabis Products in Port Orchard</h1>
+                <p class="text-lg text-white mb-8">Explore our wide selection of high-quality cannabis products. Order online for in-store pickup.</p>
+                <a href="#" class="btn-primary inline-block">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Category Navigation -->
+    <section class="bg-white py-6 shadow">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex gap-8 min-w-max">
+                <a href="#" class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-2">🌿</div>
+                    <span class="text-sm font-medium">Flower</span>
+                </a>
+                <a href="#" class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-2">🚬</div>
+                    <span class="text-sm font-medium">Pre-Rolls</span>
+                </a>
+                <a href="#" class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-2">🔋</div>
+                    <span class="text-sm font-medium">Vaporizers</span>
+                </a>
+                <a href="#" class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-2">💎</div>
+                    <span class="text-sm font-medium">Concentrates</span>
+                </a>
+                <a href="#" class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-2">🍬</div>
+                    <span class="text-sm font-medium">Edibles</span>
+                </a>
+                <a href="#" class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-2">🧴</div>
+                    <span class="text-sm font-medium">Topicals</span>
+                </a>
+                <a href="#" class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-2">🔧</div>
+                    <span class="text-sm font-medium">Accessories</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">Featured Products</h2>
+                <p class="text-gray-600">Check out our most popular items</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Blue Dream" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="text-green-500 text-xs uppercase">Flower</div>
+                        <h3 class="font-medium text-lg mb-2">Blue Dream</h3>
+                        <div class="flex justify-between text-sm text-gray-600 mb-3">
+                            <span>THC: 24%</span>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="font-bold text-lg mb-3">$12.00</div>
+                        <button class="w-full bg-green-500 text-white py-2 rounded font-medium hover:bg-green-600 transition">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556928045-16f7f50be0f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="OG Kush Pack" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="text-green-500 text-xs uppercase">Pre-Rolls</div>
+                        <h3 class="font-medium text-lg mb-2">OG Kush Pack</h3>
+                        <div class="flex justify-between text-sm text-gray-600 mb-3">
+                            <span>THC: 22%</span>
+                            <span>Indica</span>
+                        </div>
+                        <div class="font-bold text-lg mb-3">$15.00</div>
+                        <button class="w-full bg-green-500 text-white py-2 rounded font-medium hover:bg-green-600 transition">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1595979904086-471704dc0e11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Sunset Gelato Cart" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="text-green-500 text-xs uppercase">Vaporizers</div>
+                        <h3 class="font-medium text-lg mb-2">Sunset Gelato Cart</h3>
+                        <div class="flex justify-between text-sm text-gray-600 mb-3">
+                            <span>THC: 85%</span>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="font-bold text-lg mb-3">$35.00</div>
+                        <button class="w-full bg-green-500 text-white py-2 rounded font-medium hover:bg-green-600 transition">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590166774851-bc49b23a18fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Fruit Chews" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="text-green-500 text-xs uppercase">Edibles</div>
+                        <h3 class="font-medium text-lg mb-2">Fruit Chews</h3>
+                        <div class="flex justify-between text-sm text-gray-600 mb-3">
+                            <span>THC: 100mg</span>
+                            <span>10 pieces</span>
+                        </div>
+                        <div class="font-bold text-lg mb-3">$20.00</div>
+                        <button class="w-full bg-green-500 text-white py-2 rounded font-medium hover:bg-green-600 transition">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black text-white pt-16 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Flower</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Pre-Rolls</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Vaporizers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Concentrates</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Edibles</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Topicals</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">About</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Our Story</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Location & Hours</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Careers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Blog</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Loyalty Program</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Return Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">Connect With Us</h4>
+                    <p class="text-gray-300 mb-4">Follow us on social media for the latest updates and promotions.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition">FB</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition">IG</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition">TW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center text-gray-400 text-sm pt-6 border-t border-gray-800">
+                <p>&copy; 2025 Greenway Marijuana. All rights reserved.</p>
+                <div class="mt-4 p-4 bg-gray-800 rounded-lg text-sm">
+                    <p>You must be 21 years of age or older to view this website and purchase products. Cannabis products may be purchased only by adults 21 years of age or older. Keep out of reach of children. It is illegal to drive while under the influence of cannabis.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Age verification functionality
+        function verifyAge(isAdult) {
+            if (isAdult) {
+                // Check if "remember me" is checked
+                const rememberMe = document.getElementById('rememberMe').checked;
+                
+                if (rememberMe) {
+                    // Set cookie to remember for 30 days
+                    const expiryDate = new Date();
+                    expiryDate.setDate(expiryDate.getDate() + 30);
+                    document.cookie = `ageVerified=true; expires=${expiryDate.toUTCString()}; path=/`;
+                } else {
+                    // Set session cookie
+                    document.cookie = 'ageVerified=true; path=/';
+                }
+                
+                // Hide age verification overlay
+                document.getElementById('ageVerification').style.display = 'none';
+            } else {
+                // Redirect to age restriction page
+                window.location.href = 'age-restriction.html';
+            }
+        }
+        
+        // Check if age has been verified
+        function checkAgeVerification() {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith('ageVerified=')) {
+                    const value = cookie.substring('ageVerified='.length, cookie.length);
+                    if (value === 'true') {
+                        document.getElementById('ageVerification').style.display = 'none';
+                        return;
+                    }
+                }
+            }
+        }
+        
+        // Run age verification check when page loads
+        window.onload = checkAgeVerification;
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verification - Greenway Marijuana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .age-verification {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+        }
+        
+        .logo {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        p {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-no {
+            background-color: transparent;
+            color: #ccc;
+            border: 1px solid #ccc;
+        }
+        
+        .btn-no:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .remember {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .remember input {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .legal {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        @media (max-width: 480px) {
+            .age-verification {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="age-verification">
+        <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="logo">
+        <h1>Welcome to Greenway Marijuana</h1>
+        <p>You must be 21 years or older to enter this website. Please verify your age to continue.</p>
+        <div class="buttons">
+            <button class="btn btn-yes">YES, I AM 21 OR OLDER</button>
+            <button class="btn btn-no">NO, I AM UNDER 21</button>
+        </div>
+        <div class="remember">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me for 30 days</label>
+        </div>
+        <div class="legal">
+            <p>By entering this site you are agreeing to the Terms of Use and Privacy Policy. Cannabis products are for use only by adults 21 years of age or older. Cannabis use during pregnancy or breastfeeding poses potential harms. It is illegal to drive while under the influence of cannabis.</p>
+        </div>
+    </div>
+</body>
+</html>

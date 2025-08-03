@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Greenway Marijuana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-icon, .cart-icon, .account-icon {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Page Title */
+        .page-title {
+            background-color: #4CAF50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: white;
+        }
+        
+        .breadcrumb .separator {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Cart Section */
+        .cart-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        /* Cart Items */
+        .cart-items {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .cart-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr auto;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .cart-header div {
+            font-size: 14px;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr auto;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .item-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .item-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .item-category {
+            font-size: 14px;
+            color: #4CAF50;
+        }
+        
+        .item-attributes {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .item-price {
+            font-weight: 500;
+        }
+        
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 100px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f0f0f0;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: none;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .item-total {
+            font-weight: 500;
+        }
+        
+        .item-remove {
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        
+        .item-remove:hover {
+            color: #ff6b6b;
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .continue-shopping {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #4CAF50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .continue-shopping:hover {
+            color: #45a049;
+        }
+        
+        .clear-cart {
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .clear-cart:hover {
+            color: #ff6b6b;
+        }
+        
+        /* Cart Summary */
+        .cart-summary {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-label {
+            color: #666;
+        }
+        
+        .summary-value {
+            font-weight: 500;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .promo-code {
+            margin: 25px 0;
+        }
+        
+        .promo-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .promo-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .promo-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .promo-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .promo-button:hover {
+            background-color: #45a049;
+        }
+        
+        .checkout-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .checkout-button:hover {
+            background-color: #45a049;
+        }
+        
+        .checkout-note {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .empty-cart-icon {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .empty-cart p {
+            color: #999;
+            margin-bottom: 30px;
+        }
+        
+        .shop-now-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .shop-now-button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Suggested Products */
+        .suggested-products {
+            margin-top: 60px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .card-info {
+            padding: 15px;
+        }
+        
+        .card-category {
+            font-size: 12px;
+            color: #4CAF50;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .card-name {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .card-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .card-add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex: 3;
+            font-size: 14px;
+        }
+        
+        .card-add-to-cart:hover {
+            background-color: #45a049;
+        }
+        
+        .card-quick-view {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+            padding: 8px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 2;
+            font-size: 14px;
+        }
+        
+        .card-quick-view:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .age-warning {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-summary {
+                position: static;
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links, .header-actions {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .cart-header {
+                display: none;
+            }
+            
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .item-details {
+                grid-column: 1 / -1;
+            }
+            
+            .item-price, .item-quantity, .item-total {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .item-price::before {
+                content: "Price:";
+                color: #666;
+            }
+            
+            .item-quantity::before {
+                content: "Quantity:";
+                color: #666;
+            }
+            
+            .item-total::before {
+                content: "Total:";
+                color: #666;
+            }
+            
+            .item-remove {
+                text-align: right;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title h1 {
+                font-size: 28px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="logo">
+            
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Deals</a>
+                <a href="#">Loyalty</a>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-icon">🔍</div>
+                <div class="cart-icon">🛒 <span class="cart-count">3</span></div>
+                <div class="account-icon">👤</div>
+            </div>
+            
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+    
+    <!-- Page Title -->
+    <section class="page-title">
+        <h1>Your Cart</h1>
+        <div class="breadcrumb">
+            <a href="#">Home</a>
+            <span class="separator">/</span>
+            <span>Cart</span>
+        </div>
+    </section>
+    
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="cart-container">
+            <!-- Cart Items -->
+            <div class="cart-items">
+                <div class="cart-header">
+                    <div>Product</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Total</div>
+                    <div></div>
+                </div>
+                
+                <!-- Cart Item 1 -->
+                <div class="cart-item">
+                    <div class="item-details">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Blue Dream">
+                        </div>
+                        <div class="item-info">
+                            <div class="item-name">Blue Dream</div>
+                            <div class="item-category">Flower</div>
+                            <div class="item-attributes">Hybrid | THC: 24%</div>
+                        </div>
+                    </div>
+                    <div class="item-price">$12.00</div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="2" min="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <div class="item-total">$24.00</div>
+                    <div class="item-remove">×</div>
+                </div>
+                
+                <!-- Cart Item 2 -->
+                <div class="cart-item">
+                    <div class="item-details">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1595979904086-471704dc0e11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Sunset Gelato Cart">
+                        </div>
+                        <div class="item-info">
+                            <div class="item-name">Sunset Gelato Cart</div>
+                            <div class="item-category">Vaporizers</div>
+                            <div class="item-attributes">Hybrid | THC: 85%</div>
+                        </div>
+                    </div>
+                    <div class="item-price">$35.00</div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <div class="item-total">$35.00</div>
+                    <div class="item-remove">×</div>
+                </div>
+                
+                <!-- Cart Item 3 -->
+                <div class="cart-item">
+                    <div class="item-details">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1590166774851-bc49b23a18fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Fruit Chews">
+                        </div>
+                        <div class="item-info">
+                            <div class="item-name">Fruit Chews</div>
+                            <div class="item-category">Edibles</div>
+                            <div class="item-attributes">THC: 100mg | 10 pieces</div>
+                        </div>
+                    </div>
+                    <div class="item-price">$20.00</div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <div class="item-total">$20.00</div>
+                    <div class="item-remove">×</div>
+                </div>
+                
+                <div class="cart-actions">
+                    <a href="#" class="continue-shopping">← Continue Shopping</a>
+                    <a href="#" class="clear-cart">Clear Cart</a>
+                </div>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <h2 class="summary-title">Order Summary</h2>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Subtotal</span>
+                    <span class="summary-value">$79.00</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Tax (10%)</span>
+                    <span class="summary-value">$7.90</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Discount</span>
+                    <span class="summary-value">-$0.00</span>
+                </div>
+                
+                <div class="promo-code">
+                    <h3 class="promo-title">Promo Code</h3>
+                    <div class="promo-form">
+                        <input type="text" placeholder="Enter code" class="promo-input">
+                        <button class="promo-button">Apply</button>
+                    </div>
+                </div>
+                
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>$86.90</span>
+                </div>
+                
+                <button class="checkout-button">Proceed to Checkout</button>
+                
+                <p class="checkout-note">By proceeding, you confirm that you are 21 or older and agree to our terms of service.</p>
+            </div>
+        </div>
+        
+        <!-- Suggested Products -->
+        <div class="suggested-products">
+            <h2 class="section-title">You May Also Like</h2>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Flower</div>
+                        <h3 class="card-name">Girl Scout Cookies</h3>
+                        <div class="card-details">
+                            <span>THC: 25%</span>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="card-price">$15.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1556928045-16f7f50be0f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Pre-Rolls</div>
+                        <h3 class="card-name">OG Kush Pack</h3>
+                        <div class="card-details">
+                            <span>THC: 22%</span>
+                            <span>Indica</span>
+                        </div>
+                        <div class="card-price">$15.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1595979904086-471704dc0e11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                        <div class="card-badge">SALE</div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Vaporizers</div>
+                        <h3 class="card-name">Wedding Cake Cart</h3>
+                        <div class="card-details">
+                            <span>THC: 80%</span>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="card-price">$40.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1590166774851-bc49b23a18fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-category">Edibles</div>
+                        <h3 class="card-name">Chocolate Bar</h3>
+                        <div class="card-details">
+                            <span>THC: 100mg</span>
+                            <span>10 pieces</span>
+                        </div>
+                        <div class="card-price">$18.00</div>
+                        <div class="card-actions">
+                            <button class="card-add-to-cart">Add to Cart</button>
+                            <button class="card-quick-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Empty Cart (Hidden by default) -->
+        <div class="empty-cart" style="display: none;">
+            <div class="empty-cart-icon">🛒</div>
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added any products to your cart yet.</p>
+            <a href="#" class="shop-now-button">Shop Now</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Flower</a></li>
+                        <li><a href="#">Pre-Rolls</a></li>
+                        <li><a href="#">Vaporizers</a></li>
+                        <li><a href="#">Concentrates</a></li>
+                        <li><a href="#">Edibles</a></li>
+                        <li><a href="#">Topicals</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Location & Hours</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Loyalty Program</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <p>Follow us on social media for the latest updates and promotions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">TW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Greenway Marijuana. All rights reserved.</p>
+                <div class="age-warning">
+                    <p>You must be 21 years of age or older to view this website and purchase products. Cannabis products may be purchased only by adults 21 years of age or older. Keep out of reach of children. It is illegal to drive while under the influence of cannabis.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

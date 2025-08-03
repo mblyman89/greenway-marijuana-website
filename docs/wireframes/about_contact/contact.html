@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Greenway Marijuana</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        
+        .form-input {
+            height: 48px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 12px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+        }
+        
+        .form-input:focus {
+            border-color: #4CAF50;
+        }
+        
+        .form-textarea {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 12px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            min-height: 150px;
+        }
+        
+        .form-textarea:focus {
+            border-color: #4CAF50;
+        }
+        
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Header (Placeholder) -->
+    <header class="bg-black text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="w-40 h-12 bg-gray-800 flex items-center justify-center text-white">Logo</div>
+            
+            <nav class="hidden md:flex gap-6">
+                <a href="#" class="hover:text-green-500 transition">Home</a>
+                <a href="#" class="hover:text-green-500 transition">Products</a>
+                <a href="#" class="hover:text-green-500 transition">Deals</a>
+                <a href="#" class="hover:text-green-500 transition">Loyalty</a>
+                <a href="#" class="hover:text-green-500 transition">Blog</a>
+                <a href="#" class="hover:text-green-500 transition">About</a>
+                <a href="#" class="text-green-500 transition">Contact</a>
+            </nav>
+            
+            <div class="hidden md:flex items-center gap-4">
+                <span class="cursor-pointer">🔍</span>
+                <span class="cursor-pointer relative">🛒 <span class="absolute -top-2 -right-2 bg-green-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">0</span></span>
+                <span class="cursor-pointer">👤</span>
+            </div>
+            
+            <div class="md:hidden text-2xl cursor-pointer">☰</div>
+        </div>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="relative h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="container mx-auto px-4 h-full flex items-center justify-center relative z-10 text-center">
+            <div>
+                <h1 class="text-4xl font-bold text-white mb-4">Contact Us</h1>
+                <nav class="flex justify-center text-sm">
+                    <ol class="flex text-gray-300">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><span class="mx-2">/</span></li>
+                        <li class="text-white">Contact</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Information -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-2xl mx-auto mb-4">📍</div>
+                    <h3 class="text-xl font-bold mb-3">Visit Us</h3>
+                    <p class="text-gray-700">1234 Cannabis Street<br>Port Orchard, WA 98366</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-2xl mx-auto mb-4">📞</div>
+                    <h3 class="text-xl font-bold mb-3">Call Us</h3>
+                    <p class="text-gray-700">(555) 123-4567</p>
+                    <p class="text-gray-700 mt-2">Mon-Sat: 9am - 9pm<br>Sunday: 10am - 8pm</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-2xl mx-auto mb-4">✉️</div>
+                    <h3 class="text-xl font-bold mb-3">Email Us</h3>
+                    <p class="text-gray-700">info@greenwaymarijuana.com</p>
+                    <p class="text-gray-700 mt-2">We'll respond within 24 hours</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Contact Form -->
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-8">Send Us a Message</h2>
+                    
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="firstName" class="form-label">First Name*</label>
+                                <input type="text" id="firstName" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="lastName" class="form-label">Last Name*</label>
+                                <input type="text" id="lastName" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="email" class="form-label">Email Address*</label>
+                                <input type="email" id="email" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="form-label">Subject*</label>
+                            <input type="text" id="subject" class="form-input" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="form-label">Message*</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 accent-green-500 mr-2">
+                                <span class="text-sm text-gray-700">I confirm I am 21 years of age or older</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+                
+                <!-- Map -->
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-8">Find Us</h2>
+                    <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center text-gray-500">Map Embed</div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-bold mb-4">Store Hours</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-medium mb-2">Monday - Thursday</h4>
+                                <p class="text-gray-700">9:00 AM - 9:00 PM</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-2">Friday - Saturday</h4>
+                                <p class="text-gray-700">9:00 AM - 10:00 PM</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-2">Sunday</h4>
+                                <p class="text-gray-700">10:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">What forms of ID are accepted?</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Do you offer delivery?</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">What payment methods do you accept?</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">How does the loyalty program work?</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Media Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">Connect With Us</h2>
+            <p class="text-gray-700 max-w-2xl mx-auto mb-12">Follow us on social media for the latest updates, promotions, and cannabis education content.</p>
+            
+            <div class="flex justify-center gap-8">
+                <a href="#" class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-2xl hover:bg-green-500 hover:text-white transition">FB</a>
+                <a href="#" class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-2xl hover:bg-green-500 hover:text-white transition">IG</a>
+                <a href="#" class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-2xl hover:bg-green-500 hover:text-white transition">TW</a>
+                <a href="#" class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-2xl hover:bg-green-500 hover:text-white transition">YT</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-green-500">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-white mb-6">Subscribe to Our Newsletter</h2>
+                <p class="text-white text-lg mb-8">Stay updated with our latest products, promotions, and cannabis education.</p>
+                
+                <form class="flex flex-col md:flex-row gap-4">
+                    <input type="email" placeholder="Your email address" class="flex-grow py-3 px-4 rounded-lg focus:outline-none" required>
+                    <button type="submit" class="bg-black text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-900 transition">Subscribe</button>
+                </form>
+                
+                <p class="text-white text-sm mt-4 opacity-80">By subscribing, you confirm that you are 21 years of age or older.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer (Placeholder) -->
+    <footer class="bg-black text-white pt-16 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">About</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-500 transition">Placeholder</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-green-500 text-lg font-medium mb-4">Connect With Us</h4>
+                    <p class="text-gray-300 mb-4">Follow us on social media for the latest updates and promotions.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition">FB</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition">IG</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition">TW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center text-gray-400 text-sm pt-6 border-t border-gray-800">
+                <p>&copy; 2025 Greenway Marijuana. All rights reserved.</p>
+                <div class="mt-4 p-4 bg-gray-800 rounded-lg text-sm">
+                    <p>You must be 21 years of age or older to view this website and purchase products. Cannabis products may be purchased only by adults 21 years of age or older. Keep out of reach of children. It is illegal to drive while under the influence of cannabis.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

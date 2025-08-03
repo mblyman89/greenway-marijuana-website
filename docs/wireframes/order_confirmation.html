@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Greenway Marijuana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-icon, .cart-icon, .account-icon {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Checkout Progress */
+        .checkout-progress {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        
+        .progress-container::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 33.33%;
+        }
+        
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #999;
+        }
+        
+        .step-label {
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+        }
+        
+        .progress-step.active .step-icon {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }
+        
+        .progress-step.active .step-label {
+            color: #4CAF50;
+            font-weight: 500;
+        }
+        
+        .progress-step.completed .step-icon {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }
+        
+        .progress-step.completed .step-label {
+            color: #4CAF50;
+        }
+        
+        /* Confirmation Section */
+        .confirmation-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .confirmation-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #e0f2e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: #4CAF50;
+        }
+        
+        .confirmation-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        
+        .confirmation-message {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .order-details {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .order-number {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+        }
+        
+        .order-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-group {
+            margin-bottom: 20px;
+        }
+        
+        .info-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-weight: 500;
+        }
+        
+        .order-items {
+            margin-bottom: 30px;
+        }
+        
+        .items-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .item-quantity {
+            color: #666;
+        }
+        
+        .order-summary {
+            margin-top: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-label {
+            color: #666;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .id-reminder {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .id-reminder-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #856404;
+        }
+        
+        .id-reminder-text {
+            font-size: 14px;
+            color: #856404;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .primary-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .primary-button:hover {
+            background-color: #45a049;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .age-warning {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links, .header-actions {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .confirmation-container {
+                padding: 30px 20px;
+            }
+            
+            .order-info {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .primary-button, .secondary-button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .confirmation-title {
+                font-size: 24px;
+            }
+            
+            .order-details {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="logo">
+            
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Deals</a>
+                <a href="#">Loyalty</a>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-icon">🔍</div>
+                <div class="cart-icon">🛒 <span class="cart-count">0</span></div>
+                <div class="account-icon">👤</div>
+            </div>
+            
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+    
+    <!-- Checkout Progress -->
+    <section class="checkout-progress">
+        <div class="progress-container">
+            <div class="progress-step completed">
+                <div class="step-icon">1</div>
+                <div class="step-label">Cart</div>
+            </div>
+            <div class="progress-step completed">
+                <div class="step-icon">2</div>
+                <div class="step-label">Checkout</div>
+            </div>
+            <div class="progress-step active">
+                <div class="step-icon">3</div>
+                <div class="step-label">Confirmation</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Confirmation Section -->
+    <section class="confirmation-section">
+        <div class="confirmation-container">
+            <div class="confirmation-icon">✓</div>
+            <h1 class="confirmation-title">Order Confirmed!</h1>
+            <p class="confirmation-message">Thank you for your order. We've received your request and are processing it now. You'll receive an email confirmation shortly.</p>
+            
+            <div class="order-details">
+                <div class="order-number">
+                    Order #GW12345678
+                </div>
+                
+                <div class="order-info">
+                    <div>
+                        <div class="info-group">
+                            <div class="info-label">Pickup Location</div>
+                            <div class="info-value">Greenway Marijuana</div>
+                            <div class="info-value">1234 Cannabis Way</div>
+                            <div class="info-value">Port Orchard, WA 98366</div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <div class="info-label">Contact Information</div>
+                            <div class="info-value">John Doe</div>
+                            <div class="info-value">johndoe@example.com</div>
+                            <div class="info-value">(555) 123-4567</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="info-group">
+                            <div class="info-label">Pickup Date & Time</div>
+                            <div class="info-value">August 3, 2025</div>
+                            <div class="info-value">10:30 AM</div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <div class="info-label">Pickup Method</div>
+                            <div class="info-value">In-Store Pickup</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-items">
+                    <h3 class="items-title">Order Items</h3>
+                    
+                    <div class="item">
+                        <div class="item-name">
+                            <span class="item-quantity">2x</span>
+                            <span>Blue Dream (Flower)</span>
+                        </div>
+                        <div class="item-price">$24.00</div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="item-name">
+                            <span class="item-quantity">1x</span>
+                            <span>Sunset Gelato Cart (Vaporizers)</span>
+                        </div>
+                        <div class="item-price">$35.00</div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="item-name">
+                            <span class="item-quantity">1x</span>
+                            <span>Fruit Chews (Edibles)</span>
+                        </div>
+                        <div class="item-price">$20.00</div>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Subtotal</span>
+                        <span>$79.00</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span class="summary-label">Tax (10%)</span>
+                        <span>$7.90</span>
+                    </div>
+                    
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span>$86.90</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="id-reminder">
+                <h3 class="id-reminder-title">Important Reminder</h3>
+                <p class="id-reminder-text">Please bring a valid government-issued photo ID showing you are 21 or older when you pick up your order. We cannot release your order without proper identification.</p>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="#" class="primary-button">View My Orders</a>
+                <a href="#" class="secondary-button">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Flower</a></li>
+                        <li><a href="#">Pre-Rolls</a></li>
+                        <li><a href="#">Vaporizers</a></li>
+                        <li><a href="#">Concentrates</a></li>
+                        <li><a href="#">Edibles</a></li>
+                        <li><a href="#">Topicals</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Location & Hours</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Loyalty Program</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <p>Follow us on social media for the latest updates and promotions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">TW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Greenway Marijuana. All rights reserved.</p>
+                <div class="age-warning">
+                    <p>You must be 21 years of age or older to view this website and purchase products. Cannabis products may be purchased only by adults 21 years of age or older. Keep out of reach of children. It is illegal to drive while under the influence of cannabis.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

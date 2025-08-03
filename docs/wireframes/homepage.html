@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenway Marijuana - Port Orchard, WA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-icon, .cart-icon, .account-icon {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Category Navigation */
+        .category-nav {
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .category-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .category-item:hover .category-icon {
+            background-color: #e0f2e1;
+        }
+        
+        .category-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Featured Products */
+        .featured-products {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #666;
+        }
+        
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            font-size: 12px;
+            color: #4CAF50;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .product-name {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .thc-content, .strain-type {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+        
+        /* Deals Section */
+        .deals-section {
+            background-color: #e0f2e1;
+            padding: 60px 0;
+        }
+        
+        .deals-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .deal-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .deal-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+        
+        .deal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .deal-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .deal-info {
+            padding: 20px;
+        }
+        
+        .deal-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .deal-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .deal-dates {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+        
+        /* Store Info */
+        .store-info {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .store-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 0 20px;
+        }
+        
+        .store-details h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .store-address, .store-hours {
+            margin-bottom: 20px;
+        }
+        
+        .store-address p, .store-hours p {
+            margin-bottom: 5px;
+        }
+        
+        .store-map {
+            height: 300px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: #333;
+            color: #fff;
+            padding: 60px 0;
+        }
+        
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .newsletter h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter p {
+            margin-bottom: 30px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+        
+        .newsletter-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 5px 5px 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .newsletter-button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #4CAF50;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .age-warning {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links, .header-actions {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .store-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-button {
+                border-radius: 5px;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="https://images.unsplash.com/photo-1603822534358-8ddfe1d34b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Greenway Marijuana Logo" class="logo">
+            
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Deals</a>
+                <a href="#">Loyalty</a>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-icon">🔍</div>
+                <div class="cart-icon">🛒 <span class="cart-count">0</span></div>
+                <div class="account-icon">👤</div>
+            </div>
+            
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Cannabis Products in Port Orchard</h1>
+            <p>Explore our wide selection of high-quality cannabis products. Order online for in-store pickup.</p>
+            <a href="#" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+    
+    <!-- Category Navigation -->
+    <section class="category-nav">
+        <div class="category-container">
+            <a href="#" class="category-item">
+                <div class="category-icon">🌿</div>
+                <span class="category-name">Flower</span>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-icon">🚬</div>
+                <span class="category-name">Pre-Rolls</span>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-icon">🔋</div>
+                <span class="category-name">Vaporizers</span>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-icon">💎</div>
+                <span class="category-name">Concentrates</span>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-icon">🍬</div>
+                <span class="category-name">Edibles</span>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-icon">🧴</div>
+                <span class="category-name">Topicals</span>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-icon">🔧</div>
+                <span class="category-name">Accessories</span>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="section-title">
+            <h2>Featured Products</h2>
+            <p>Check out our most popular items</p>
+        </div>
+        
+        <div class="products-container">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Flower</div>
+                    <h3 class="product-name">Blue Dream</h3>
+                    <div class="product-details">
+                        <span class="thc-content">THC: 24%</span>
+                        <span class="strain-type">Hybrid</span>
+                    </div>
+                    <div class="product-price">$12.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1556928045-16f7f50be0f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Pre-Rolls</div>
+                    <h3 class="product-name">OG Kush Pack</h3>
+                    <div class="product-details">
+                        <span class="thc-content">THC: 22%</span>
+                        <span class="strain-type">Indica</span>
+                    </div>
+                    <div class="product-price">$15.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1595979904086-471704dc0e11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Vaporizers</div>
+                    <h3 class="product-name">Sunset Gelato Cart</h3>
+                    <div class="product-details">
+                        <span class="thc-content">THC: 85%</span>
+                        <span class="strain-type">Hybrid</span>
+                    </div>
+                    <div class="product-price">$35.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1590166774851-bc49b23a18fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Product Name">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Edibles</div>
+                    <h3 class="product-name">Fruit Chews</h3>
+                    <div class="product-details">
+                        <span class="thc-content">THC: 100mg</span>
+                        <span class="strain-type">10 pieces</span>
+                    </div>
+                    <div class="product-price">$20.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Deals Section -->
+    <section class="deals-section">
+        <div class="section-title">
+            <h2>Current Deals</h2>
+            <p>Save big on these limited-time offers</p>
+        </div>
+        
+        <div class="deals-container">
+            <div class="deals-grid">
+                <!-- Deal 1 -->
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1603866123773-0ca04d6c0e18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Deal Image">
+                        <div class="deal-badge">20% OFF</div>
+                    </div>
+                    <div class="deal-info">
+                        <h3 class="deal-title">Flower Friday</h3>
+                        <p class="deal-description">Get 20% off all flower products every Friday!</p>
+                        <p class="deal-dates">Valid: Every Friday</p>
+                        <a href="#" class="cta-button">Shop Now</a>
+                    </div>
+                </div>
+                
+                <!-- Deal 2 -->
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1595979904086-471704dc0e11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Deal Image">
+                        <div class="deal-badge">BOGO</div>
+                    </div>
+                    <div class="deal-info">
+                        <h3 class="deal-title">Vape Wednesday</h3>
+                        <p class="deal-description">Buy one cartridge, get one 50% off every Wednesday!</p>
+                        <p class="deal-dates">Valid: Every Wednesday</p>
+                        <a href="#" class="cta-button">Shop Now</a>
+                    </div>
+                </div>
+                
+                <!-- Deal 3 -->
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1556928045-16f7f50be0f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Deal Image">
+                        <div class="deal-badge">15% OFF</div>
+                    </div>
+                    <div class="deal-info">
+                        <h3 class="deal-title">First-Time Customer</h3>
+                        <p class="deal-description">15% off your first purchase when you sign up for our loyalty program!</p>
+                        <p class="deal-dates">Valid: Always</p>
+                        <a href="#" class="cta-button">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Store Info -->
+    <section class="store-info">
+        <div class="store-container">
+            <div class="store-details">
+                <h3>Visit Our Store</h3>
+                <div class="store-address">
+                    <p><strong>Greenway Marijuana</strong></p>
+                    <p>1234 Cannabis Way</p>
+                    <p>Port Orchard, WA 98366</p>
+                    <p>Phone: (360) 555-1234</p>
+                </div>
+                <div class="store-hours">
+                    <p><strong>Store Hours:</strong></p>
+                    <p>Monday - Saturday: 8:00 AM - 10:00 PM</p>
+                    <p>Sunday: 9:00 AM - 9:00 PM</p>
+                </div>
+                <a href="#" class="cta-button">Get Directions</a>
+            </div>
+            <div class="store-map">
+                <!-- Map will be embedded here -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86076.56363388149!2d-122.70063087664795!3d47.53038368776354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490398edc2d248d%3A0x661fa9a1a7e2ea27!2sPort%20Orchard%2C%20WA!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated on new products, special offers, and cannabis news.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Flower</a></li>
+                        <li><a href="#">Pre-Rolls</a></li>
+                        <li><a href="#">Vaporizers</a></li>
+                        <li><a href="#">Concentrates</a></li>
+                        <li><a href="#">Edibles</a></li>
+                        <li><a href="#">Topicals</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Location & Hours</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Loyalty Program</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <p>Follow us on social media for the latest updates and promotions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">TW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Greenway Marijuana. All rights reserved.</p>
+                <div class="age-warning">
+                    <p>You must be 21 years of age or older to view this website and purchase products. Cannabis products may be purchased only by adults 21 years of age or older. Keep out of reach of children. It is illegal to drive while under the influence of cannabis.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
