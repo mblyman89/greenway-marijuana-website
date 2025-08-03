@@ -1,0 +1,60 @@
+{
+  "name": "greenway-marijuana-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:setup": "node scripts/setup-database.js",
+    "test": "jest",
+    "test:browsers": "node scripts/cross-browser-test.js",
+    "analyze": "ANALYZE=true next build",
+    "prepare": "husky install",
+    "verify": "node scripts/deploy-verification.js",
+    "deploy:staging": "vercel",
+    "deploy:production": "vercel --prod"
+  },
+  "dependencies": {
+    "next": "^13.4.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.4.0",
+    "pg": "^8.11.3",
+    "prisma": "^5.1.1",
+    "@prisma/client": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.7",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.48.0",
+    "eslint-config-next": "^13.4.19",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "jest": "^29.6.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.1.2",
+    "playwright": "^1.37.1",
+    "@next/bundle-analyzer": "^13.4.19",
+    "chalk": "^4.1.2",
+    "vercel": "^31.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
