@@ -14,6 +14,15 @@ interface CheckoutFormData {
   agreeTerms: boolean;
 }
 
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  pickupTime?: string;
+  agreeTerms?: string;
+}
+
 const CheckoutPage: React.FC = () => {
   const { cartItems, subtotal, clearCart } = useCart();
   const router = useRouter();
@@ -26,7 +35,7 @@ const CheckoutPage: React.FC = () => {
     pickupTime: '',
     agreeTerms: false,
   });
-  const [errors, setErrors] = useState<Partial<CheckoutFormData>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   // Generate pickup time options (every 30 minutes from now until closing time)
