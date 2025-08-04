@@ -14,6 +14,7 @@ interface CheckoutFormData {
   agreeTerms: boolean;
 }
 
+// Add this new interface for form errors
 interface FormErrors {
   firstName?: string;
   lastName?: string;
@@ -78,7 +79,7 @@ const CheckoutPage: React.FC = () => {
     });
     
     // Clear error when field is edited
-    if (errors[name as keyof CheckoutFormData]) {
+    if (errors[name as keyof FormErrors]) {
       setErrors({
         ...errors,
         [name]: undefined,
@@ -94,7 +95,7 @@ const CheckoutPage: React.FC = () => {
     });
     
     // Clear error when field is edited
-    if (errors[name as keyof CheckoutFormData]) {
+    if (errors[name as keyof FormErrors]) {
       setErrors({
         ...errors,
         [name]: undefined,
@@ -103,7 +104,7 @@ const CheckoutPage: React.FC = () => {
   };
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<CheckoutFormData> = {};
+    const newErrors: FormErrors = {};
     
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'First name is required';
