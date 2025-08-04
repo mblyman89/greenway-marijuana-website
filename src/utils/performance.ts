@@ -53,8 +53,8 @@ export const optimizeImage = (props: {
     alt,
     width,
     height,
-    loading: priority ? 'eager' : 'lazy',
-    decoding: 'async',
+    loading: priority ? 'eager' : 'lazy' as const,
+    decoding: 'async' as const,
     className: className || '',
   };
 };
