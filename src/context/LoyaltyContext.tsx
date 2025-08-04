@@ -1,12 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { 
-  LoyaltyMember, 
-  LoyaltyTier, 
-  LoyaltyTierConfig, 
-  LoyaltyTransaction,
-  LoyaltyReward,
-  LoyaltyRedemption
-} from '../types/Loyalty';
+import { LoyaltyMember, LoyaltyTier, LoyaltyTierConfig, LoyaltyTransaction, LoyaltyTransactionType, LoyaltyReward, LoyaltyRedemption } from '../types/Loyalty';
 import { 
   mockLoyaltyMembers, 
   getLoyaltyTierByPoints, 
@@ -193,7 +186,7 @@ export const LoyaltyProvider: React.FC<LoyaltyProviderProps> = ({ children }) =>
       const newTransaction: LoyaltyTransaction = {
         id: `transaction-${Date.now()}`,
         memberId: member.id,
-        type: 'redemption',
+        type: LoyaltyTransactionType.REDEMPTION,
         points: -reward.pointsCost,
         description: `Redemption: ${reward.name}`,
         rewardId: reward.id,
