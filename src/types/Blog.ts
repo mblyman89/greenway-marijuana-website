@@ -5,7 +5,7 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   coverImage: string;
-  category: BlogCategory;
+  category: string;
   tags: string[];
   author: string;
   authorImage?: string;
@@ -14,16 +14,16 @@ export interface BlogPost {
   featured?: boolean;
 }
 
-export type BlogCategory = 
-  | 'cannabis-education'
-  | 'product-spotlights'
-  | 'industry-news'
-  | 'health-wellness'
-  | 'recipes';
-
 export interface BlogCategory {
   id: string;
   name: string;
   slug: string;
   count: number;
 }
+
+export type BlogCategoryType = 
+  | 'cannabis-education'
+  | 'product-spotlights'
+  | 'industry-news'
+  | 'health-wellness'
+  | 'recipes';
