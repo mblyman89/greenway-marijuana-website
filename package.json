@@ -23,7 +23,8 @@
     "axios": "^1.4.0",
     "pg": "^8.11.3",
     "prisma": "^5.1.1",
-    "@prisma/client": "^5.1.1"
+    "@prisma/client": "^5.1.1",
+    "react-markdown": "^8.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.5.7",
