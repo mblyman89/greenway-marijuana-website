@@ -47,7 +47,7 @@ const ProductDetailPage: React.FC = () => {
 
   // Generate structured data for the product
   const getStructuredData = () => {
-    if (!product) return null;
+    if (!product) return undefined;
     
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://greenwaymarijuana.com';
     const productUrl = `${baseUrl}/products/${product.id}`;
