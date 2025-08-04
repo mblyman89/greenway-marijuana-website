@@ -14,7 +14,7 @@ export const generateProductStructuredData = (product: Product, url: string) => 
     mpn: product.id,
     brand: {
       '@type': 'Brand',
-      name: product.brand || 'Greenway Marijuana'
+      name: 'Greenway Marijuana'
     },
     category: product.category,
     offers: {
