@@ -23,7 +23,7 @@ export const generateProductStructuredData = (product: Product, url: string) => 
       priceCurrency: 'USD',
       price: product.salePrice || product.price,
       priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-      availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition'
     },
     additionalProperty: [
