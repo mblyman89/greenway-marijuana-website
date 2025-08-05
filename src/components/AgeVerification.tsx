@@ -56,38 +56,38 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerify }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-[#064E3B] bg-opacity-95 overflow-auto">
-      <div className="relative bg-black bg-opacity-90 border border-green-500 rounded-md p-8 md:p-10 text-center max-w-md w-full mx-4 my-auto">
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-gradient-to-br from-green-900 to-green-950 overflow-auto">
+      <div className="relative bg-black border border-green-500 p-8 md:p-10 text-center max-w-md w-full mx-4 my-auto">
         {/* Logo */}
         <div className="mb-6">
           <img 
-            src="/images/cloud-logo.png" 
+            src="/images/greenway-logo-white.png" 
             alt="Greenway Marijuana Logo" 
-            className="w-40 md:w-48 mx-auto"
+            className="w-48 md:w-56 mx-auto"
           />
         </div>
         
         {/* Content */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <h1 className="text-2xl md:text-3xl font-bold text-green-400">
             Welcome to Greenway Marijuana
           </h1>
           
-          <p className="text-white text-base md:text-lg">
+          <p className="text-white text-base">
             You must be 21 years or older to enter this website.
             <br />Please verify your age to continue.
           </p>
           
           <div className="flex flex-col gap-4 mt-6">
             <button 
-              className="bg-green-500 text-white py-3 px-6 rounded font-bold text-lg hover:bg-green-600 transition-colors duration-300"
+              className="bg-green-500 text-white py-3 px-6 font-bold text-lg hover:bg-green-600 transition-colors duration-300"
               onClick={() => handleVerify(true)}
             >
               YES, I AM 21 OR OLDER
             </button>
             
             <button 
-              className="bg-transparent text-white border border-white py-3 px-6 rounded font-bold text-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-300"
+              className="bg-transparent text-white border border-white py-3 px-6 font-bold text-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-300"
               onClick={() => handleVerify(false)}
             >
               NO, I AM UNDER 21
@@ -102,7 +102,7 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerify }) => {
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
             />
-            <label htmlFor="rememberMe" className="text-white ml-2 text-sm md:text-base">
+            <label htmlFor="rememberMe" className="text-white ml-2 text-sm">
               Remember me for 30 days
             </label>
           </div>
@@ -110,11 +110,11 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerify }) => {
         
         {/* Legal text */}
         <div className="mt-8 pt-4 border-t border-gray-700">
-          <p className="text-gray-400 text-xs md:text-sm">
+          <p className="text-gray-400 text-xs text-center">
             By entering this site you are agreeing to the Terms of Use and Privacy Policy. 
             Cannabis products are for use only by adults 21 years of age or older. 
-            Cannabis use during pregnancy or breastfeeding poses potential harms. 
-            It is illegal to drive while under the influence of cannabis.
+            Cannabis use during pregnancy or breastfeeding poses potential harms. It is 
+            illegal to drive while under the influence of cannabis.
           </p>
         </div>
       </div>
