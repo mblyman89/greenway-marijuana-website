@@ -26,6 +26,15 @@ module.exports = {
         'platinum': '#E5E4E2',
         'alert': '#ff6b6b',    // Alert Red
         'warning': '#ffc107',  // Warning Yellow
+        // Extended Green Colors for Gradients
+        'green': {
+          400: '#34D399',
+          500: '#10B981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065F46',
+          900: '#064E3B'
+        }
       },
       fontFamily: {
         sans: ['Arial', 'Helvetica', 'sans-serif'],
