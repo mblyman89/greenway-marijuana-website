@@ -14,13 +14,6 @@ module.exports = {
           'dark': '#45a049',  // Dark Green
           'light': '#e0f2e1', // Light Green
         },
-        // Green colors for the gradient
-        'green': {
-          400: '#34D399',
-          500: '#10B981',
-          600: '#059669',
-          900: '#064E3B'
-        },
         // Neutral Colors
         'neutral': {
           'light': '#f9f9f9',  // Light Gray
