@@ -61,7 +61,7 @@ const AgeVerification: React.FC<AgeVerificationProps> = ({ onVerify }) => {
         {/* Logo */}
         <div className="mb-6">
           <img 
-            src="/images/greenway-logo-white.png" 
+            src="/images/cloud-logo.png" 
             alt="Greenway Marijuana Logo" 
             className="w-48 md:w-56 mx-auto"
           />
